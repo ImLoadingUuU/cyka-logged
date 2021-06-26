@@ -12,7 +12,7 @@ A free and open-sourced authentication template created. Created by [PlanetCloud
 # Getting Started
 [TODO]
 
-# Support
+# Discord
 <a href="https://discord.gg/mmEWpnwB8D"><img src="https://discordapp.com/api/guilds/399429466566426635/widget.png?style=banner2" alt="Join our Discord Server" title="Planet Dev Network"></a>
 
 # Contributions
