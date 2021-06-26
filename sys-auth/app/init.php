@@ -1,17 +1,32 @@
 <?php
 
 /**
- * Project LOGGED v1.8 Main Application File
- * by PlanetCloud (https://www.byet.net/index.php?/profile/528767-planetcloud/)
+ * Project LOGGED v1.9 Main Application File
+ * @author PlanetCloud (https://www.byet.net/index.php?/profile/528767-planetcloud/)
  * ---
- * This file should not be modified. 
- * Read the documentation for more information.
+ * PLEASE Read the documentation for more information.
  */
 
-define('APP', dirname(__FILE__));
+# Definitions
+define('SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/sys-auth');
+define('APP', SYSTEM . '/app');
 
-# Require Arr class
-require 'arr.class.php';
+# Prevent direct access
+if (strpos($_SERVER['REQUEST_URI'], 'sys-auth') !== false) {
+    die(header('HTTP/1.1 403 Forbidden'));
+}
+
+# Start session
+session_start();
+
+# Load classes
+foreach (glob(APP . "/classes/*.php") as $class) {
+    require $class;
+}
+
+# Parse config
+die('x');
+
 
 # Setup config related functions
 require 'config.php';
