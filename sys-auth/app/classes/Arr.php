@@ -1,10 +1,9 @@
 <?php
 
-# Check if file was accessed directly
+# Prevent direct file access
 if (!defined('APP')) {
     die(header("HTTP/1.1 403 Forbidden"));
 }
-
 
 /**
  * Arr Class (Modified)

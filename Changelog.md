@@ -1,0 +1,2 @@
+- Improved Session Security
+- Cleanup unused memory
