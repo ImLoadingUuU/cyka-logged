@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Bootstrap the application
+ * ---
+ * No modification is needed.
+ * Read the documentation.
+ */
+
 # Prevent direct file access
 if (strpos($_SERVER['REQUEST_URI'], 'sys-auth') !== false) {
     die(header('HTTP/1.1 403 Forbidden'));
@@ -16,11 +23,23 @@ foreach (glob(SYSTEM . "/app/classes/*.php") as $class) {
 }
 unset($class);
 
-# Parse configuration
-$config = json_decode(file_get_contents(SYSTEM . '/app/cache/config/app.config.json'), true);
-if (!$config) {
-    $config = require 'config_parser.php';
+# Load System config
+define('SYSTEM_CONFIG', Arr::dot(require SYSTEM . '/config/system.php'));
+if (SYSTEM_CONFIG['maintenance_mode'] && !isset($_REQUEST[SYSTEM_CONFIG['maintenance_key']])) {
+    echo 'MAINTENANCE: LOCKED';
+} else {
+    echo 'MAINTENANCE:WELCOME';
 }
+var_dump($_REQUEST);
+die;
+
+# Load configurations
+$config = json_decode(file_get_contents(SYSTEM . '/app/cache/config/app.json'), true);
+if (!$config) {
+    require 'config_parser.php';
+    throw new Exception('Something went wrong');
+}
+// Add custom error handler
 
 
 # Start session

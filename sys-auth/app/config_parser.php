@@ -5,6 +5,10 @@ namespace ConfigParser;
 use Arr;
 use InvalidConfigException;
 
+/**
+ * NOTE TO SELF: Should check if the sensitive config still use default values and lock the system
+ */
+
 # Handle App Config
 $app_config = require SYSTEM . '/config/app.php';
 $app_config = Arr::dot($app_config);
@@ -19,10 +23,13 @@ foreach ($required as $key) {
 }
 
 file_put_contents(
-    SYSTEM . '/app/cache/config/app.config.json',
+    SYSTEM . '/app/cache/config/app.json',
     json_encode(array_merge(['loaded_from' => 'cache'], $app_config))
 );
 
 # Handle Multisite Config
+if($app_config['system.enable_multisite']){
+    $multisite_config = require SYSTEM.'/config/multisite.php';
+}
 
 return array_merge(['loaded_from' => 'config'], $app_config);

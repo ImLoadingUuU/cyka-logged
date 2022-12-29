@@ -13,9 +13,10 @@ return [
     'members' => [
         [
             'domain' => 'DOM',
+            'protocol' => 'https',
             'identifier' => 'ID', // added by system
             'roles' => ['sender', 'receiver'],
-            'allow_direct_signups' => false,
+            'allow_direct_signup' => false,
             'allow_direct_login' => false,
         ],
     ]
