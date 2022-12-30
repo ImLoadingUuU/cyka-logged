@@ -9,12 +9,25 @@
 
 // Define a network here
 return [
-    'network_secret_key' => 'KEY',
+    'secret_key' => 'KEY',
     'members' => [
         [
             'domain' => 'DOM',
             'protocol' => 'https',
-            'identifier' => 'ID', // added by system
+            'roles' => ['sender', 'receiver'],
+            'allow_direct_signup' => false,
+            'allow_direct_login' => false,
+        ],
+        [
+            'domain' => 'hello.com',
+            'protocol' => 'https',
+            'roles' => ['sender', 'receiver'],
+            'allow_direct_signup' => false,
+            'allow_direct_login' => false,
+        ],
+        [
+            'domain' => 'bello.com',
+            'protocol' => 'https',
             'roles' => ['sender', 'receiver'],
             'allow_direct_signup' => false,
             'allow_direct_login' => false,

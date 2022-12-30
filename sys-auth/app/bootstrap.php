@@ -15,7 +15,8 @@ if (strpos($_SERVER['REQUEST_URI'], 'sys-auth') !== false) {
 # Definitions
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('SYSTEM', ROOT . '/sys-auth');
-define('APP', ROOT . '/sys-auth/app');
+define('PAGES', SYSTEM . '/pages');
+define('APP', SYSTEM . '/app');
 
 # Load classes
 foreach (glob(SYSTEM . "/app/classes/*.php") as $class) {
@@ -25,16 +26,21 @@ unset($class);
 
 # Load System config
 define('SYSTEM_CONFIG', Arr::dot(require SYSTEM . '/config/system.php'));
-if (SYSTEM_CONFIG['maintenance_mode'] && !isset($_REQUEST[SYSTEM_CONFIG['maintenance_key']])) {
-    echo 'MAINTENANCE: LOCKED';
-} else {
-    echo 'MAINTENANCE:WELCOME';
+if (SYSTEM_CONFIG['maintenance_mode']) {
+    if (!isset($_REQUEST[SYSTEM_CONFIG['maintenance_key']])) {
+        require PAGES . '/maintenance.php';
+        die;
+    }
+    echo '<!-- MAINTENANCE MODE IS ACTIVE! REMEMBER TO DISABLE IT -->' . PHP_EOL;
 }
-var_dump($_REQUEST);
+
+require 'config_parser.php';
 die;
 
 # Load configurations
-$config = json_decode(file_get_contents(SYSTEM . '/app/cache/config/app.json'), true);
+$config = (SYSTEM_CONFIG['development_mode']) 
+    ? define('SYSTEM_CONFIG2', Arr::dot(require SYSTEM . '/config/system.php'))
+    : json_decode(file_get_contents(SYSTEM . '/app/cache/config/app.json'), true);
 if (!$config) {
     require 'config_parser.php';
     throw new Exception('Something went wrong');
