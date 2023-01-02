@@ -33,5 +33,4 @@ return [
             'allow_direct_login' => false,
         ],
     ]
-    // Whoami?
 ];

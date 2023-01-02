@@ -5,6 +5,8 @@ namespace ConfigParser;
 use Arr;
 use InvalidConfigException;
 
+ini_set('xdebug.var_display_max_depth', 99);
+
 /**
  * NOTE TO SELF: Should check if the sensitive config still use default values and lock the system
  */
@@ -31,35 +33,28 @@ foreach ($required as $key) {
 }
 
 $required = ['domain', 'protocol', 'roles', 'allow_direct_signup', 'allow_direct_login'];
-$domains = [];
+$domains = $index_id = [];
 foreach ($multisite['members'] as $i => $member) {
     foreach ($required as $key) {
         if (!isset($multisite['members'][$i][$key])) {
             throw new InvalidConfigException("Missing '{$key}' field in 'multisite' member '{$i}' config.");
         }
     }
-    $multisite['members'][$i]['identifier'] = md5(json_encode($member));
     $domains[] = $member['domain'];
+    $md5_id = md5(json_encode($member));
+    $multisite['members'][$i]['identifier'] = $md5_id;
+    $index_id[$md5_id] = $multisite['members'][$i];
 }
+$config['multisite'] = array_merge($multisite, [
+    'index_domains' => $domains,
+    'members' => $index_id
+]);
+unset($multisite, $member, $key, $md5_id, $domains, $index_id);
 
-var_dump($multisite);
+# Handle System Config
+$system = require SYSTEM . '/config/system.php';
+$config['system'] = $system;
+$config['cached_on'] = time();
 
-// # Handle App Config
-// $app_config = require SYSTEM . '/config/app.php';
-// $app_config = Arr::dot($app_config);
-
-// $required = ['system.debug_mode', 'system.use_https', 'system.cpanel_url', 'system.enable_multisite', 'branding.name', 'branding.logo', 'branding.slogan', 'branding.main_website', 'branding.favicon', 'branding.accent_color', 'branding.background_color', 'branding.language', 'branding.contact_email', 'branding.report_abuse_email',];
-
-
-
-// file_put_contents(
-//     SYSTEM . '/app/cache/config/app.json',
-//     json_encode(array_merge(['loaded_from' => 'cache'], $app_config))
-// );
-
-// # Handle Multisite Config
-// if($app_config['system.enable_multisite']){
-//     $multisite_config = require SYSTEM.'/config/multisite.php';
-// }
-
-// return array_merge(['loaded_from' => 'config'], $app_config);
+# Save to file
+file_put_contents(SYSTEM . '/app/cache/config.json', json_encode($config));
