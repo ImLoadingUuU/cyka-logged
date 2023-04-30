@@ -3,6 +3,7 @@
 A free and open-sourced authentication template created. Created by [PlanetCloud/PlanetTheCloud](https://www.byet.net/index.php?/profile/528767-planetcloud/) for the MyOwnFreeHost community.
 
 # Planned features:
+## Do NOT Pull to Original Repo
 - New multisite system
 - Translation support
 - Easy background customization
