@@ -7,7 +7,7 @@
  */
 
 return [
-    'installation_url' => 'localhost',
+    'installation_url' => '',
 
     'development_mode' => true,
     'maintenance_mode' => false,
@@ -17,9 +17,9 @@ return [
     'language' => 'en',
     'use_https' => false,
 
-    'cpanel_url' => 'share.sitenexus.me',
+    'cpanel_url' => '',
     'domain_selection' => [
-        'share.sitenexus.me'
+        'example.com'
     ],
     'blacklisted_tld' => [
         'tk',
@@ -33,9 +33,9 @@ return [
             'remember_me' => true,
         ],
         'signup' => [
-            'recaptcha' => true,
-            'recaptcha_key_secret' => "6LdKHcklAAAAAKqKWQzbSd4FcVg0GUWxa_3vg-tm",
-            'recaptcha_key_public' => "6LdKHcklAAAAALeLtKHH4_WHALcESZFW3Yd0bPau",
+            'recaptcha' => false,
+            'recaptcha_key_secret' => "",
+            'recaptcha_key_public' => "",
         ]
     ],
 ];

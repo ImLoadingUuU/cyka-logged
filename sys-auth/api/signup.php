@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 require __DIR__ . '/../app/bootstrap.php';
 
 
@@ -21,16 +21,22 @@ try {
         curl_setopt($rcCurl, CURLOPT_POST, "POST");
         curl_setopt($rcCurl, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($rcCurl, CURLOPT_POSTFIELDS, http_build_query([
-            "secret" => config("system.features.signup.recaptcha_secret"),
+            "secret" => config("system.features.signup.recaptcha_key_secret"),
             "response" => $data['g-recaptcha-response'],
             "remoteip" => $_SERVER['REMOTE_ADDR']
         ]));
         $result = curl_exec($rcCurl);
-        curl_close($ch);
+      
         $resultJSON = json_decode($result, true);
-        if (!$resultJSON . success) {
+        
+        if (!$resultJSON.success) {
             throw new ValidationFailedException(__("Captcha is Invalid"), "captcha_invalid");
         }
+        
+        curl_close($rcCurl);
+        $resultJSON = "";
+        $result = "";
+        
 
 
 
@@ -150,5 +156,7 @@ $response = [
     'message' => $account['details']['message'],
     'details' => Arr::only($account['details'], ['field', 'type'])
 ];
-echo json_encode(array_merge($response, $toMerge));
+
+
+echo json_encode($response);
 die;

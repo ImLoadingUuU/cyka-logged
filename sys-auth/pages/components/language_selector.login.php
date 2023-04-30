@@ -17,8 +17,8 @@
         <option>Catalan</option>
         <option>Cebuano</option>
         <option>Chichewa</option>
-        <option>Chinese_simplified</option>
-        <option>Chinese_traditional</option>
+        <option value="Chinese_simplified" >简体中文</option>
+        <option value="Chinese_traditional">繁體中文</option>
         <option>Corsican</option>
         <option>Croatian</option>
         <option>Czech</option>

@@ -24,7 +24,7 @@ Page::deliverTranslations([
 ]);
 
 # Add scripts
-Page::addScript('dist/login.js');
+Page::addScript('src/login.js');
 
 # Display the page
 Page::render();

@@ -138,7 +138,13 @@ function config(string $key, $default = null)
 }
 
 # Load Language
-define('DICTIONARY', json_decode(file_get_contents(SYSTEM . '/language/' . config('system.language') . '.lang.json'), true));
+$language = $_COOKIE['language'] ?? 'en';
+if (file_exists(SYSTEM . '/language/' . $language . '.lang.json')) {
+    define('DICTIONARY', json_decode(file_get_contents(SYSTEM . '/language/' . $language . '.lang.json'), true));
+} else {
+    define('DICTIONARY', json_decode(file_get_contents(SYSTEM . '/language/en.lang.json'), true));
+}
+
 function __(string $key)
 {
     return DICTIONARY[$key] ?? $key;

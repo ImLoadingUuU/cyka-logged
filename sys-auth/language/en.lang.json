@@ -6,6 +6,8 @@
     "Password cannot be empty": "Password cannot be empty",
     "Password is too short": "Password is too short",
     "Your website will be available at": "Your website will be available at",
-    "Choose a subdomain and extension": "Choose a subdomain and extension"
+    "Choose a subdomain and extension": "Choose a subdomain and extension",
+    "Interface Language": "Interface Language",
+    "Powered by logged-beta-2.0": "Powered by logged-beta-2.0 "
 }
 

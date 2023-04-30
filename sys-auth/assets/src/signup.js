@@ -125,7 +125,6 @@ function beforeSubmitCheck() {
         hasError(i_captcha_solution, __("Please enter a captcha with 5 characters."));
         return false;
     }
-    checkPassed(i_captcha_solution);
 
     return true;
 }
@@ -158,14 +157,17 @@ function handleSubmit() {
         method: "POST",
         body: data
     })
-    .then(res => {
+    .then(async res => {
+        
         if (res.status != 200) { 
             throw new Error(__("Bad Server Response")); 
         }
-        return res.text();
+        console.log(await res.clone().text())
+        return await res.clone().text();
     })
     .then(res => handleResponse(JSON.parse(res)))
     .catch(err => {
+        console.log(err);
         showAlert(`${__("Something went wrong, please try again later.")}\n${err}`);
     })
     .finally(res => {
@@ -175,6 +177,7 @@ function handleSubmit() {
 }
 
 function handleResponse(res) {
+    console.log(res)
     if (res.status === 'error') {
         if (typeof res.message !== 'undefined') {
             console.log(res.message)

@@ -7,14 +7,14 @@
  */
 
 return [
-    'name' => 'Hosting Company',
-    'logo' => 'HOSTING COMPANY',
+    'name' => 'SiteNexus',
+    'logo' => 'SiteNexus',
     'logo_type' => 'text',
-    'slogan' => 'Host your websites for free',
+    'slogan' => 'Early Access',
     'main_website' => 'http://hosting.com',
     'favicon' => '',
     'accent_color' => 'blue',
-    'background_color' => 'default',
+    'background_color' => 'mixmatch',
     'contact_email' => 'hello@hosting.com',
     'report_abuse_email' => 'abuse@hosting.com'
 ];

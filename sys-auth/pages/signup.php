@@ -111,7 +111,7 @@
                     ?>
                     
                   
-                    <input type="hidden" id="i_captcha_solution" value="DE8D3" name="captcha_solution" class="form-control" autocomplete="off">
+                    <input type="text" id="i_captcha_solution" value="DE8D3" name="captcha_solution" class="form-control" autocomplete="off">
                     <input type="hidden" name="captcha_id" value="1">
                     <label hidden class="form-label"><?= __('Captcha') ?></label>
                 </div>
@@ -133,5 +133,5 @@
             <a href="/auth/login"><?= __('Sign in to your account(s)') ?></a>
         </div>
     </form>
-    <script src="assets/signup.js"></script>
+    <!--<script src="assets/src/signup.js"></script>-->
 </div>
