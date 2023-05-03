@@ -30,5 +30,12 @@
     "Language": "語言",
     "Remember username": "記住用戶名稱",
     "Interface Language": "介面語言",
-    "Powered by logged-beta-2.0": "由 logged-beta-2.0 提供支持"
+    "Powered by logged-beta-2.0": "由 logged-beta-2.0 提供支持",
+    "Success!": "成功建立!",
+    "Your account has been created.": "您的網站帳戶已經建立。",
+    "To activate your account, please check your email and click the activation link we've sent to you.": "為了啟用您的帳戶，請檢查您的電子郵件，並點擊我們發送給您的啟用鏈接。",
+    "The activation page contains your username, which you will need to log into the control panel.": "啟用頁面包含您的用戶名，您需要登錄控制面板。",
+    "'If you don't receive the email within a few minutes, please check your spam folder.": "如果您在幾分鐘內沒有收到電子郵件，請檢查您的垃圾郵件文件夾。",
+    "Go back to our website": "返回我們的網站",
+    "Subdomain must be between 4 to 16 characters in length.": "子網域必須介於4到16個字符長度。"
 }

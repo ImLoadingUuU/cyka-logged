@@ -28,5 +28,12 @@
     "Create an account": "创建一个帐户",
     "Forgot your password?": "忘记密码了？",
     "Language": "语言",
-    "Remember username": "记住用户名"
+    "Remember username": "记住用户名",
+    "Success!": "成功建立!",
+    "Your account has been created.": "您的帐户已创建。",
+    "To activate your account, please check your email and click the activation link we've sent to you.": "要激活您的帐户，请检查您的电子邮件并单击我们发送给您的激活链接。",
+    "The activation page contains your username, which you will need to log into the control panel.": "激活页面包含您的用户名，您需要使用该用户名登录控制面板。",
+    "'If you don't receive the email within a few minutes, please check your spam folder.": "“如果您在几分钟内没有收到电子邮件，请检查您的垃圾邮件文件夹。",
+    "Go back to our website": "返回我们的网站",
+    "Subdomain must be between 4 to 16 characters in length.": "子域名长度必须介于4到16个字符之间。"
     }

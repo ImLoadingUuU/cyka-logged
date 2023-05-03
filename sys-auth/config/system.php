@@ -21,6 +21,10 @@ return [
     'domain_selection' => [
         'share.sitenexus.me'
     ],
+    'amp' => [
+      'captcha' => true,
+      'password' => "admin"
+    ],
     'blacklisted_tld' => [
         'tk',
         'de'

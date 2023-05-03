@@ -1,5 +1,6 @@
 # Cyka-LOGGED v2.0
-## I will not plan pull to original repo anymore,there's lot of unstable feature
+## Do not use on production, The Admin panel feature isn't completed
+## I will not plan to pull to the original repo anymore, there's a lot of unstable features
 A free and open-sourced authentication template was created. Created by [PlanetCloud/PlanetTheCloud](https://www.byet.net/index.php?/profile/528767-planetcloud/) for the MyOwnFreeHost community.
 
 # Planned features:

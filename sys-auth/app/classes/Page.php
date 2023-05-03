@@ -127,9 +127,9 @@ class Page
      * 
      * @return array
      */
-    public static function getTranslations($key)
-{
-        return Arr::only(DICTIONARY($key ?? null), self::$translations);
+    public static function getTranslations()
+    {
+        return Arr::only(DICTIONARY, self::$translations);
     }
 
     /**

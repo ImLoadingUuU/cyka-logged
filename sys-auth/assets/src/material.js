@@ -9544,7 +9544,7 @@ function getElement(e) {
 function __(s) {
    try {
     if (typeof translations[s] === 'undefined') {
-        return "undefined";
+        return  s;
     }
     return translations[s];
    } catch (err) {

@@ -13,29 +13,32 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $required = ['email', 'password', 'password_confirm', 'domain_type', 'custom_domain', 'subdomain', 'extension', 'captcha_id', 'captcha_solution', '_token'];
 $data = $_POST;
 try {
+
     if (config("system.features.signup.recaptcha")) {
-        if (!$data['g-recaptcha-response']) {
+
+
+        if (isset($data['g-recaptcha-response']) == false) {
             throw new ValidationFailedException(__("Captcha is Required"), "captcha_required");
         }
         $rcCurl = curl_init();
-        curl_setopt($rcCurl, CURLOPT_POST, "POST");
+        curl_setopt($rcCurl, CURLOPT_POST, true);
         curl_setopt($rcCurl, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
         curl_setopt($rcCurl, CURLOPT_POSTFIELDS, http_build_query([
             "secret" => config("system.features.signup.recaptcha_key_secret"),
             "response" => $data['g-recaptcha-response'],
             "remoteip" => $_SERVER['REMOTE_ADDR']
         ]));
-        $result = curl_exec($rcCurl);
-      
-        $resultJSON = json_decode($result, true);
+        curl_setopt($rcCurl,CURLOPT_RETURNTRANSFER, true);
         
-        if (!$resultJSON.success) {
+        $resultRC = curl_exec($rcCurl);
+      
+        $resultJSON = json_decode($resultRC, true);
+        
+        if (!$resultJSON['success']) {
             throw new ValidationFailedException(__("Captcha is Invalid"), "captcha_invalid");
         }
         
         curl_close($rcCurl);
-        $resultJSON = "";
-        $result = "";
         
 
 
@@ -129,12 +132,15 @@ try {
         }
 
         // Captcha
-        if (strlen($data['captcha_solution']) !== 5) {
-            // Consideration: Store captcha ID in session so it can't be tampered with
-            // but that might be too far fetched, especially when the captcha can be easily solved.
-            // Add a captcha provider in later versions instead.
-            throw new ValidationFailedException(__('The captcha solution you entered is incorrect. Please try again.'), 'captcha_solution');
+        if (!config("system.features.signup.recaptcha")) {
+            if (strlen($data['captcha_solution']) !== 5) {
+                // Consideration: Store captcha ID in session so it can't be tampered with
+                // but that might be too far fetched, especially when the captcha can be easily solved.
+                // Add a captcha provider in later versions instead.
+                throw new ValidationFailedException(__('The captcha solution you entered is incorrect. Please try again.'), 'captcha_solution');
+            }
         }
+      
     })();
 } catch (ValidationFailedException $e) {
     apiErrorResponse($e->getMessage(), [
@@ -152,7 +158,7 @@ try {
 $account = HostingAccount::create($data);
 $toMerge = (SYSTEM_CONFIG['development_mode']) ? ['dev_raw' => $account['raw']] : [];
 $response = [
-    'status' => ($account['created']) ? 'success' : 'error',
+    'status' => isset($account['created']) ? "success" : "error",
     'message' => $account['details']['message'],
     'details' => Arr::only($account['details'], ['field', 'type'])
 ];

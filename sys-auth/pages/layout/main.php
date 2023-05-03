@@ -79,7 +79,7 @@
     <?php if (SYSTEM_CONFIG["development_mode"]) { ?>
                 <div class="alert alert-warning">
                     <b>DEVELOPMENT MODE IS ON!</b><br>Reduced performance and exposing critical information.
-                    <?php echo $_COOKIE["language"]; ?>
+                    <?php echo $_COOKIE["language"] ?? "null"; ?>
                 </div>
     <?php } ?>
    
@@ -136,14 +136,12 @@
     ?>
     <script>
       
-        <?php
+
      
 
-        echo "var translations = " .
-            json_encode(Page::getTranslations()) .
-            ";" .
-            PHP_EOL;
-        ?>
+     <?php
+    echo 'var translations = ' . json_encode(Page::getTranslations()) . ';' . PHP_EOL;
+     ?>
     </script>
 </body>
 
