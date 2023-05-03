@@ -1,21 +1,18 @@
 # Cyka-LOGGED v2.0
-## Do not use on production, The Admin panel feature isn't completed
-## I will not plan to pull to the original repo anymore, there's a lot of unstable features
+## I will not plan pull to original repo anymore,there's lot of unstable feature
 A free and open-sourced authentication template was created. Created by [PlanetCloud/PlanetTheCloud](https://www.byet.net/index.php?/profile/528767-planetcloud/) for the MyOwnFreeHost community.
 
-# Planned features:
 - New multisite system
 - Translation support
 - Easy background customization
-- ReCaptcha Support (very stable no scam)
-- Customize confirm email page/after submit
+- ReCaptcha Support (stable and reliable)
+- Customizable confirm email page/after submit
 
 # Discord
-<a href="https://discord.gg/mmEWpnwB8D"><img src="https://discordapp.com/api/guilds/399429466566426635/widget.png?style=banner2" alt="Join our Discord Server" title="Planet Dev Network"></a>
+For any questions or feedback, we encourage you to use Discussions at [There](https://github.com/ImLoadingUuU/project-logged/discussions).
 
 # Contributions
-All contributions are appreciated. If you want to contribute, please create a pull request.  
-To report a bug/issue, kindly do so by opening a new issue.
+We welcome all contributions to this project. Please feel free to create a pull request to help improve the template's functionality. If you have any bug reports or issues, please submit them by opening a new issue.
 
-# License
-This project is licensed under the MIT License.
+Thank you for your support!
+
